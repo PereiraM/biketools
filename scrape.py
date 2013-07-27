@@ -1,15 +1,17 @@
 import urllib2, json, os, time, sys
 
 while True:
-    print 'requesting data...'
-    stations_data_str = urllib2.urlopen('http://citibikenyc.com/stations/json').read()
-    stations_data = json.loads(stations_data_str)
-    data_time = stations_data['executionTime']
-    data_files = os.listdir('data')
+    
     
     try:
+        print 'requesting data...'
+        stations_data_str = urllib2.urlopen('http://citibikenyc.com/stations/json').read()
+        stations_data = json.loads(stations_data_str)
+        data_time = stations_data['executionTime']
+        data_files = os.listdir('data')
+        
         if data_time not in data_files:
-            data_file = open('data/' + data_time, 'w')
+            data_file = open('data_raw/' + data_time, 'w')
             data_file.write(stations_data_str)
             data_file.close()
             
