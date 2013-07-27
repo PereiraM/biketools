@@ -1,8 +1,6 @@
 import urllib2, json, os, time, sys
 
 while True:
-    
-    
     try:
         print 'requesting data...'
         stations_data_str = urllib2.urlopen('http://citibikenyc.com/stations/json').read()
@@ -34,5 +32,3 @@ while True:
         print "error:", sys.exc_info()[1].message
     
     time.sleep(30)
-
-
