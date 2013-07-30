@@ -106,11 +106,14 @@ def make_data_day_files():
     
     files_by_day = reduce(group_by_day, data_files, {})
     json.encoder.FLOAT_REPR = lambda f: ("%.3f" % f)
+    i = 1
     for date_str in files_by_day:
+        print('making day file', date_str, '(', i, 'of', len(files_by_day.keys()), ')')
         interval_data = filter_interval(files_by_day[date_str], 15)
         day_file = open('data/history/' + date_str + '.js', 'w')
         day_file.write(json.dumps(interval_data))
         day_file.close()
+        i+=1
 
 make_data_day_files()
 data_files = os.listdir('data_raw')
